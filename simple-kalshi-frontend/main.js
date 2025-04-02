@@ -8,7 +8,7 @@ const axios = require('axios');
 const store = new Store();
 
 // Backend API URL
-const BACKEND_URL = store.get('backendUrl') || 'http://127.0.0.1:3000';
+const BACKEND_URL = store.get('backendUrl') || 'http://127.0.0.1:5000';
 
 // Keep a global reference of the window object to avoid garbage collection
 let mainWindow;
@@ -99,7 +99,7 @@ async function checkBackendConnection() {
 // Get API settings
 ipcMain.handle('get-api-settings', () => {
   return {
-    apiUrl: store.get('apiUrl', 'http://127.0.0.1:3000'),
+    apiUrl: store.get('apiUrl', 'http://127.0.0.1:5000'),
     apiKey: store.get('apiKey', '')
   };
 });

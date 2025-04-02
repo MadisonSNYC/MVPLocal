@@ -16,7 +16,7 @@ echo -e "${GREEN}=========================================${NC}"
 echo ""
 
 # Configuration
-BACKEND_PORT=3000  # Default port (preferred for web apps)
+BACKEND_PORT=5000  # Default port (changed from 3000 to 5000 for consistency with Electron)
 BACKEND_HOST="127.0.0.1"
 BACKEND_DIR="./backend"
 APP_DIR="./app"

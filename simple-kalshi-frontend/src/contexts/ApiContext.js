@@ -6,7 +6,7 @@ const ApiContext = createContext();
 
 // API provider component
 export const ApiProvider = ({ children }) => {
-  const [backendUrl, setBackendUrl] = useState('http://127.0.0.1:3000') ;
+  const [backendUrl, setBackendUrl] = useState('http://127.0.0.1:5000') ;
   const [isConnected, setIsConnected] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
