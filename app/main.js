@@ -7,6 +7,32 @@ const isDev = process.env.NODE_ENV === 'development';
 // Global reference to the main window
 let mainWindow;
 
+// Function to wait for the React development server
+function waitForReactDevServer(callback) {
+  const serverUrl = 'http://localhost:3000';
+  let attempts = 30; // 30 attempts with 1-second delay = 30 seconds timeout
+  
+  const checkServer = () => {
+    axios.get(serverUrl)
+      .then(() => {
+        console.log('React development server is ready!');
+        callback();
+      })
+      .catch(() => {
+        attempts--;
+        if (attempts <= 0) {
+          console.error('Timed out waiting for React development server');
+          callback(new Error('Timed out waiting for React development server'));
+        } else {
+          console.log(`Waiting for React development server... ${attempts} attempts left`);
+          setTimeout(checkServer, 1000);
+        }
+      });
+  };
+  
+  checkServer();
+}
+
 // Create the main browser window
 function createWindow() {
   mainWindow = new BrowserWindow({
@@ -19,17 +45,29 @@ function createWindow() {
     },
     titleBarStyle: 'hiddenInset', // For macOS native feel
     backgroundColor: '#1a1a1a', // Dark background for initial load
+    show: false // Hide until ready
   });
 
   // Load the index.html file
   if (isDev) {
     // In development, load from React development server
-    mainWindow.loadURL('http://localhost:3000');
-    // Open DevTools
-    mainWindow.webContents.openDevTools();
+    console.log('Development mode: Waiting for React dev server...');
+    waitForReactDevServer((err) => {
+      if (err) {
+        console.error('Failed to connect to React dev server:', err);
+        app.quit();
+        return;
+      }
+      
+      mainWindow.loadURL('http://localhost:3000');
+      // Open DevTools
+      mainWindow.webContents.openDevTools();
+      mainWindow.show();
+    });
   } else {
     // In production, load from built files
     mainWindow.loadFile(path.join(__dirname, 'build', 'index.html'));
+    mainWindow.show();
   }
 
   // Handle window close
