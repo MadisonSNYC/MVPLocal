@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalshi Trading Dashboard</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #212529;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        header {
+            background-color: #343a40;
+            color: white;
+            padding: 1.5rem 0;
+            text-align: center;
+        }
+        h1 {
+            margin: 0;
+        }
+        .status-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-top: 2rem;
+            padding: 1.5rem;
+        }
+        .api-status {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 0.5rem;
+        }
+        .status-online {
+            background-color: #28a745;
+        }
+        .status-offline {
+            background-color: #dc3545;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        button:hover {
+            background-color: #0069d9;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Kalshi Trading Dashboard</h1>
+    </header>
+    <div class="container">
+        <div class="status-card">
+            <h2>System Status</h2>
+            <div class="api-status">
+                <div class="status-indicator status-online" id="backend-status"></div>
+                <span id="backend-status-text">Checking backend status...</span>
+            </div>
+            <div class="api-status">
+                <div class="status-indicator" id="kalshi-status"></div>
+                <span id="kalshi-status-text">Checking Kalshi API status...</span>
+            </div>
+            <p>If you're seeing this page, it means the frontend application is not properly connected to the backend.</p>
+            <button id="refresh-btn">Refresh Status</button>
+        </div>
+    </div>
+    
+    <script>
+        // Check backend status
+        function checkBackendStatus() {
+            fetch('/api/health')
+                .then(response => {
+                    if (response.ok) return response.json();
+                    throw new Error('Backend server not responding');
+                })
+                .then(data => {
+                    if (data.status === 'ok') {
+                        document.getElementById('backend-status').className = 'status-indicator status-online';
+                        document.getElementById('backend-status-text').textContent = 'Backend API: Online';
+                        checkKalshiStatus();
+                    } else {
+                        throw new Error('Backend status not ok');
+                    }
+                })
+                .catch(error => {
+                    document.getElementById('backend-status').className = 'status-indicator status-offline';
+                    document.getElementById('backend-status-text').textContent = 'Backend API: Offline';
+                    document.getElementById('kalshi-status').className = 'status-indicator status-offline';
+                    document.getElementById('kalshi-status-text').textContent = 'Kalshi API: Status unknown';
+                });
+        }
+        
+        // Check Kalshi API status
+        function checkKalshiStatus() {
+            fetch('/api/exchange/status')
+                .then(response => {
+                    if (response.ok) return response.json();
+                    throw new Error('Could not get Kalshi status');
+                })
+                .then(data => {
+                    document.getElementById('kalshi-status').className = 'status-indicator status-online';
+                    document.getElementById('kalshi-status-text').textContent = 'Kalshi API: Online';
+                })
+                .catch(error => {
+                    document.getElementById('kalshi-status').className = 'status-indicator status-offline';
+                    document.getElementById('kalshi-status-text').textContent = 'Kalshi API: Offline or not authenticated';
+                });
+        }
+        
+        // Set up refresh button
+        document.getElementById('refresh-btn').addEventListener('click', checkBackendStatus);
+        
+        // Initial check
+        checkBackendStatus();
+    </script>
+</body>
+</html> 
