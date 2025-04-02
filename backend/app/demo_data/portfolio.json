@@ -1,0 +1,59 @@
+{
+  "balance": 1000.0,
+  "positions": [
+    {
+      "market_id": "KXNASDAQ100U-25APR02H1200-T19529.99",
+      "event_id": "KXNASDAQ100U-25APR02H1200",
+      "series_id": "KXNASDAQ100U",
+      "title": "Nasdaq 100 above 19,529.99 at 12:00 PM ET?",
+      "position": "YES",
+      "quantity": 10,
+      "average_price": 62,
+      "current_price": 65,
+      "profit_loss": 30.0,
+      "timestamp": 1743621067
+    },
+    {
+      "market_id": "KXBTCD-25APR0212-T87249.99",
+      "event_id": "KXBTCD-25APR0212",
+      "series_id": "KXBTCD",
+      "title": "Bitcoin above $87,249.99 at 12:00 PM ET?",
+      "position": "NO",
+      "quantity": 15,
+      "average_price": 45,
+      "current_price": 42,
+      "profit_loss": 45.0,
+      "timestamp": 1743620167
+    }
+  ],
+  "history": [
+    {
+      "market_id": "KXINXU-25APR01H1200-T5650.9999",
+      "event_id": "KXINXU-25APR01H1200",
+      "series_id": "KXINXU",
+      "title": "S&P 500 above 5,650.99 at 12:00 PM ET?",
+      "position": "YES",
+      "quantity": 20,
+      "average_price": 68,
+      "exit_price": 100,
+      "profit_loss": 640.0,
+      "timestamp": 1743536467,
+      "status": "settled",
+      "result": "win"
+    },
+    {
+      "market_id": "KXETHD-25APR0112-T1905.99",
+      "event_id": "KXETHD-25APR0112",
+      "series_id": "KXETHD",
+      "title": "Ethereum above $1,905.99 at 12:00 PM ET?",
+      "position": "NO",
+      "quantity": 25,
+      "average_price": 55,
+      "exit_price": 0,
+      "profit_loss": 1375.0,
+      "timestamp": 1743536467,
+      "status": "settled",
+      "result": "win"
+    }
+  ]
+}

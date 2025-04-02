@@ -1,0 +1,71 @@
+[
+  {
+    "id": "social_1",
+    "user_id": "user_12345",
+    "username": "crypto_trader",
+    "activity_type": "trade",
+    "market_id": "KXBTCD-25APR0212-T87249.99",
+    "event_id": "KXBTCD-25APR0212",
+    "series_id": "KXBTCD",
+    "title": "Bitcoin above $87,249.99 at 12:00 PM ET?",
+    "position": "YES",
+    "quantity": 25,
+    "price": 58,
+    "timestamp": 1743622567,
+    "comment": "Bitcoin looking strong today! Expecting new highs."
+  },
+  {
+    "id": "social_2",
+    "user_id": "user_67890",
+    "username": "index_investor",
+    "activity_type": "trade",
+    "market_id": "KXINXU-25APR02H1200-T5654.9999",
+    "event_id": "KXINXU-25APR02H1200",
+    "series_id": "KXINXU",
+    "title": "S&P 500 above 5,654.99 at 12:00 PM ET?",
+    "position": "NO",
+    "quantity": 15,
+    "price": 28,
+    "timestamp": 1743622267,
+    "comment": "S&P looking overbought on the hourly chart. Taking a contrarian position."
+  },
+  {
+    "id": "social_3",
+    "user_id": "user_24680",
+    "username": "eth_whale",
+    "activity_type": "comment",
+    "market_id": "KXETHD-25APR0212-T1909.99",
+    "event_id": "KXETHD-25APR0212",
+    "series_id": "KXETHD",
+    "title": "Ethereum above $1,909.99 at 12:00 PM ET?",
+    "timestamp": 1743621967,
+    "comment": "Ethereum has strong resistance at $1,910. Don't think it will break through before noon."
+  },
+  {
+    "id": "social_4",
+    "user_id": "user_13579",
+    "username": "tech_analyst",
+    "activity_type": "trade",
+    "market_id": "KXNASDAQ100U-25APR02H1200-T19529.99",
+    "event_id": "KXNASDAQ100U-25APR02H1200",
+    "series_id": "KXNASDAQ100U",
+    "title": "Nasdaq 100 above 19,529.99 at 12:00 PM ET?",
+    "position": "YES",
+    "quantity": 30,
+    "price": 65,
+    "timestamp": 1743621667,
+    "comment": "Tech stocks rallying this morning. Nasdaq looking very bullish!"
+  },
+  {
+    "id": "social_5",
+    "user_id": "user_97531",
+    "username": "crypto_skeptic",
+    "activity_type": "comment",
+    "market_id": "KXBTC-25APR0212-B87375",
+    "event_id": "KXBTC-25APR0212",
+    "series_id": "KXBTC",
+    "title": "Bitcoin between $87,250 and $87,375 at 12:00 PM ET?",
+    "timestamp": 1743621367,
+    "comment": "Bitcoin volatility increasing. Doubt it will stay in this narrow range until noon."
+  }
+]

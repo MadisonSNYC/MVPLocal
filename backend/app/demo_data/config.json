@@ -1,0 +1,19 @@
+{
+  "yolo_mode": {
+    "enabled": false,
+    "max_spend_per_trade": 50.0,
+    "risk_tolerance": "medium",
+    "strategy": "hybrid"
+  },
+  "default_strategy": "hybrid",
+  "default_risk_level": "medium",
+  "refresh_interval": 60,
+  "target_markets": [
+    "KXNASDAQ100U",
+    "KXINXU",
+    "KXETHD",
+    "KXETH",
+    "KXBTCD",
+    "KXBTC"
+  ]
+}

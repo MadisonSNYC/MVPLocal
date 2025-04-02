@@ -16,7 +16,7 @@ echo -e "${GREEN}=========================================${NC}"
 echo ""
 
 # Configuration
-BACKEND_PORT=5000  # Default port
+BACKEND_PORT=8000  # Default port (changed from 5000 to avoid conflict with AirPlay on macOS)
 BACKEND_HOST="127.0.0.1"
 BACKEND_DIR="./backend"
 APP_DIR="./app"
@@ -48,7 +48,7 @@ if [ -f "config/.env" ]; then
         BACKEND_PORT=$SERVER_PORT
         echo "Using port $BACKEND_PORT from config/.env"
     else
-        BACKEND_PORT=5000   # default to 5000
+        BACKEND_PORT=8000   # default to 8000
         echo "Using default port $BACKEND_PORT (no SERVER_PORT found in config/.env)"
     fi
     # Override default host if .env provides it

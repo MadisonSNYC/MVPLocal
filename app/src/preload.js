@@ -19,12 +19,12 @@ contextBridge.exposeInMainWorld(
   'api',
   {
     // Base URL for the backend API
-    baseUrl: 'http://localhost:5000',
+    baseUrl: 'http://localhost:8000',
     
     // Generic fetch wrapper for API calls
     async fetch(endpoint, options = {}) {
       try {
-        const url = `http://localhost:5000${endpoint}`;
+        const url = `http://localhost:8000${endpoint}`;
         const response = await fetch(url, {
           ...options,
           headers: {
