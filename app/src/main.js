@@ -133,7 +133,7 @@ ipcMain.handle('get-app-info', () => {
 // Handle backend status check
 ipcMain.handle('check-backend-status', async () => {
   try {
-    const response = await fetch('http://localhost:5000/api/health');
+    const response = await fetch('http://localhost:8000/api/health');
     const data = await response.json();
     return { status: 'online', data };
   } catch (error) {
