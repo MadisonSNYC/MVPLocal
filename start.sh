@@ -16,7 +16,7 @@ echo -e "${GREEN}=========================================${NC}"
 echo ""
 
 # Configuration
-BACKEND_PORT=5000  # Default port (changed from 3000 to 5000 for consistency with Electron)
+BACKEND_PORT=5000  # Default port
 BACKEND_HOST="127.0.0.1"
 BACKEND_DIR="./backend"
 APP_DIR="./app"
@@ -43,13 +43,23 @@ kill_process_on_port() {
 if [ -f "config/.env" ]; then
     echo "Loading configuration from config/.env..."
     export $(grep -v '^#' config/.env | xargs)
-    # Override with environment variables if they exist
-    if [ ! -z "$SERVER_PORT" ]; then
+    # Override default port if .env provides it
+    if [ -n "$SERVER_PORT" ]; then
         BACKEND_PORT=$SERVER_PORT
+        echo "Using port $BACKEND_PORT from config/.env"
+    else
+        BACKEND_PORT=5000   # default to 5000
+        echo "Using default port $BACKEND_PORT (no SERVER_PORT found in config/.env)"
     fi
-    if [ ! -z "$SERVER_HOST" ]; then
+    # Override default host if .env provides it
+    if [ -n "$SERVER_HOST" ]; then
         BACKEND_HOST=$SERVER_HOST
+        echo "Using host $BACKEND_HOST from config/.env"
+    else
+        echo "Using default host $BACKEND_HOST (no SERVER_HOST found in config/.env)"
     fi
+else
+    echo "No config/.env file found, using default port $BACKEND_PORT and host $BACKEND_HOST"
 fi
 
 # Create log directory if it doesn't exist
@@ -110,6 +120,7 @@ kill_existing_processes() {
 # Function to start the backend
 start_backend() {
     echo -e "${BLUE}Starting FastAPI backend server...${NC}"
+    echo -e "${BLUE}Using host: $BACKEND_HOST and port: $BACKEND_PORT${NC}"
     cd "$BACKEND_DIR"
     
     # Activate virtual environment if it exists
